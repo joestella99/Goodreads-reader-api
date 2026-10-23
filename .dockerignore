@@ -1,0 +1,7 @@
+.git
+.env
+*.csv
+*.sqlite3
+__pycache__
+.venv
+tests
