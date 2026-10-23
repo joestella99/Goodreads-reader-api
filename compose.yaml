@@ -1,0 +1,14 @@
+services:
+  reader-api:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      READING_API_KEY: ${READING_API_KEY:?Set READING_API_KEY in .env}
+      GOODREADS_USER_ID: ${GOODREADS_USER_ID:-}
+      READING_DB_PATH: /data/books.sqlite3
+    volumes:
+      - reading-data:/data
+    restart: unless-stopped
+volumes:
+  reading-data:
