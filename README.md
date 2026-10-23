@@ -2,6 +2,26 @@
 
 An **unofficial, self-hosted** FastAPI app that imports your Goodreads shelves, ratings, and reviews into SQLite. Read-only toward Goodreads. This is a reusable starter for anyone's library, not affiliated with Goodreads.
 
+## Zero-setup GitHub Codespaces workflow
+
+This repository now includes a devcontainer and one-command launcher. In a **new Codespace**, Python dependencies install automatically. For an **existing Codespace**, open its terminal and run:
+
+```bash
+git pull
+bash scripts/start.sh
+```
+
+The launcher generates a random API key locally in ignored `.env` and starts Uvicorn. For the owner's personal workspace, the starter account ID is `167934914`; **other users must set `GOODREADS_USER_ID` in `.env` to their own profile ID before syncing.** Do not commit your `.env`.
+
+Keep Codespaces forwarded port 8000 set to **Private**. Then, in a **second Codespaces terminal**, run:
+
+```bash
+bash scripts/sync.sh
+bash scripts/stats.sh
+```
+
+Goodreads may block public RSS; if sync fails, export your Goodreads library to CSV and use `POST /import/csv` as documented below. This does not grant an assistant direct access to the private Codespaces terminal.
+
 ## Run online in GitHub Codespaces
 
 1. Click **Code → Codespaces → Create codespace on main**.
